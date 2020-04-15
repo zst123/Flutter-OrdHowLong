@@ -12,4 +12,6 @@ A simple ORD countdown app created in Flutter. Includes daily inspirational quot
 
 ### Apk
 
-[app-20200415.apk](app-20200415.apk)
+- [Debug: app-debug-20200415.apk](app-debug-20200415.apk)
+
+- [Release: app-release-20200415.apk](app-release-20200415.apk)
