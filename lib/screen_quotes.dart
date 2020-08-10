@@ -1,8 +1,7 @@
+import 'dart:convert';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:xml/xml.dart' as xml;
-import 'package:xml/xml_events.dart' as xml_events;
 import 'package:ordhowlong/main.dart';
 
 class ScreenQuotes extends StatefulWidget {
@@ -12,7 +11,7 @@ class ScreenQuotes extends StatefulWidget {
 }
 
 class ScreenQuotesState extends State<ScreenQuotes> {
-  static const String URL = 'https://www.brainyquote.com/link/quotebr.rss';
+  static const String URL = 'https://quotes.rest/qod?language=en';
   List<String> quotes = new List<String>()..add("");
 
   @override
@@ -29,12 +28,12 @@ class ScreenQuotesState extends State<ScreenQuotes> {
     //print(content);
 
     // parse quotes
-    final document = xml.parse(content);
-    final items = document.findAllElements('item');
-    quotes = items.map((node) {
-      return node.findAllElements('description').first.text +
+    var parsedJson = json.decode(content);
+    var items = parsedJson['contents']['quotes'];
+    quotes = items.map<String>((node) {
+      return (node['quote'] +
           '\n\n– ' +
-          node.findAllElements('title').first.text;
+          node['author']).toString();
     }).toList();
 
     // force refresh
