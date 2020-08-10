@@ -205,3 +205,7 @@ fabric.properties
 !/gradle/wrapper/gradle-wrapper.jar
 
 # End of https://www.gitignore.io/api/dart,flutter,androidstudio
+
+# Exceptions for web hosting in the ./docs/ directory
+!docs/*
+
