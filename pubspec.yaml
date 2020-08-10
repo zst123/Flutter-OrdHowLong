@@ -19,7 +19,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  hidden_drawer_menu: ^1.1.2
+  hidden_drawer_menu: 1.1.2
   shared_preferences: ^0.5.6+3
   flutter_datetime_picker: 1.4.0
   wave_progress_widget: ^0.0.1
