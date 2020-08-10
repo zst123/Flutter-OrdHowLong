@@ -11,7 +11,7 @@ class ScreenJourney extends StatefulWidget {
 }
 
 class ScreenJourneyState extends State<ScreenJourney> {
-  var _progress = 50.0;
+  var _progress = 0.0;
   var _progressDate = "";
   var _progressCount = "";
   DateTime enlistment;
@@ -43,7 +43,19 @@ class ScreenJourneyState extends State<ScreenJourney> {
     todayDay();
   }
 
+  void showSnackbarDatesNotSet() {
+    Scaffold.of(context).removeCurrentSnackBar();
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text("Please set your dates of service in the Settings"),
+    ));
+  }
+
   void updateCurrentDate() {
+    if (enlistment == null || ord == null) {
+      showSnackbarDatesNotSet();
+      return;
+    }
+
     final total = ord.difference(enlistment).inDays;
     final currentDate = enlistment.add(Duration(days: (total * _progress / 100.0).round()));
     _progressDate = new DateFormat("dd MMM yyyy").format(currentDate);
@@ -54,6 +66,11 @@ class ScreenJourneyState extends State<ScreenJourney> {
   }
 
   void addOneDay() {
+    if (enlistment == null || ord == null) {
+      showSnackbarDatesNotSet();
+      return;
+    }
+
     final total = ord.difference(enlistment).inDays;
     _progress += 100.0 / total;
     if (_progress > 100.0) {
@@ -64,6 +81,11 @@ class ScreenJourneyState extends State<ScreenJourney> {
   }
 
   void todayDay() {
+    if (enlistment == null || ord == null) {
+      showSnackbarDatesNotSet();
+      return;
+    }
+
     final current = DateTime.now().difference(enlistment).inDays;
     final total = ord.difference(enlistment).inDays;
     _progress = current / total * 100;
@@ -73,6 +95,11 @@ class ScreenJourneyState extends State<ScreenJourney> {
   }
 
   void subtractOneDay() {
+    if (enlistment == null || ord == null) {
+      showSnackbarDatesNotSet();
+      return;
+    }
+
     final total = ord.difference(enlistment).inDays;
     _progress -= 100.0 / total;
     if (_progress < 0.0) {
