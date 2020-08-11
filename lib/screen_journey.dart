@@ -117,7 +117,7 @@ class ScreenJourneyState extends State<ScreenJourney> {
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 30.0),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.05),
             Text(
               '${_progress.toStringAsFixed(2)}%',
               style: TextStyle(
@@ -125,10 +125,16 @@ class ScreenJourneyState extends State<ScreenJourney> {
                   fontWeight: FontWeight.bold, height: 1
               ),
             ),
-            SizedBox(height: 10.0),
-            WaveProgress(200.0, MyApp.primaryColor, MyApp.primaryColor, _progress),
-            Container(
-              margin: EdgeInsets.only(top: 20.0, bottom: 20.0, left: 30.0, right: 30.0),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+            WaveProgress(MediaQuery.of(context).size.height * 0.33,
+              MyApp.primaryColor, MyApp.primaryColor, _progress),
+          Container(
+              margin: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.03,
+                  bottom: MediaQuery.of(context).size.height * 0.03,
+                  left: MediaQuery.of(context).size.width * 0.01,
+                  right: MediaQuery.of(context).size.width * 0.01,
+              ),
               child: SliderTheme(
                 data: SliderTheme.of(context).copyWith(
                   activeTrackColor: MyApp.primaryColor,
@@ -162,7 +168,7 @@ class ScreenJourneyState extends State<ScreenJourney> {
                   fontWeight: FontWeight.w900, height: 1
               ),
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.03),
             Text(
               '${_progressCount}',
               style: TextStyle(
@@ -171,7 +177,7 @@ class ScreenJourneyState extends State<ScreenJourney> {
                   fontWeight: FontWeight.w900, height: 1.2
               ),
             ),
-            SizedBox(height: 25.0),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.03),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
