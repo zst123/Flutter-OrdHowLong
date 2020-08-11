@@ -32,4 +32,5 @@ Web
 
 	$ flutter build web
 	$ flutter run -d web-server --release
+	$ rm -rd ./docs/
 	$ cp -r ./build/web/ ./docs/
