@@ -11,7 +11,7 @@ class ScreenQuotes extends StatefulWidget {
 }
 
 class ScreenQuotesState extends State<ScreenQuotes> {
-  static const String URL = 'https://quotes.rest/qod?language=en';
+  static const String URL = 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.brainyquote.com%2Flink%2Fquotebr.rss';
   List<String> quotes = new List<String>()..add("");
 
   @override
@@ -29,11 +29,11 @@ class ScreenQuotesState extends State<ScreenQuotes> {
 
     // parse quotes
     var parsedJson = json.decode(content);
-    var items = parsedJson['contents']['quotes'];
+    var items = parsedJson['items'];
     quotes = items.map<String>((node) {
-      return (node['quote'] +
+      return (node['description'] +
           '\n\n– ' +
-          node['author']).toString();
+          node['title']).toString();
     }).toList();
 
     // force refresh
